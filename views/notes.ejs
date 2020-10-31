@@ -1,0 +1,65 @@
+<%- include('header'); -%>
+<!-- navbar -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand"> noteZ </a>
+  <form class="form-inline">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+      Search
+    </button>
+  </form>
+</nav>
+
+<div class="container">
+  <!-- input -->
+  <h2 class="border-dark m-3">notez App</h2>
+  <div class="card border-dark m-3 shadow p-3 mb-5">
+    <div class="card-body">
+      <form action="/" method="POST">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Add Title"
+          name="title"
+        />
+        <div class="form-group">
+          <textarea
+            name="notesList"
+            class="form-control shadow-sm p-3 mb-5"
+            rows="2"
+            placeholder="Add"
+          ></textarea>
+          <button
+            type="submit"
+            class="btn btn-light btn-outline-dark rounded-circle"
+          >
+            +
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <h2 class="border-dark m-3">Your Notes</h2>
+  <hr />
+
+  <!-- output -->
+  <div class="row container-fluid">
+    <% postContent.forEach(post => { %>
+    <div class="card card border-dark m-3" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.note %></p>
+        <a href="#" class="btn btn-light btn-outline-dark rounded-circle">-</a>
+      </div>
+    </div>
+
+    <%}) %>
+  </div>
+</div>
+<%- include('footer'); -%>
