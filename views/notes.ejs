@@ -49,21 +49,30 @@
   <hr />
 
   <!-- output -->
-  <div class="row container-fluid">
-    <% postContent.forEach(post => { %>
-    <div class="card card border-dark m-3" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title"><%= post.title %></h5>
-        <p class="card-text">
-          <%= post.note.substring(0,250) + " ..." %>
-          <a href="/<%= post.title %> ">Read More</a>
-        </p>
+  <form action="/delete" method="POST">
+    <div class="row container-fluid">
+      <% postContent.forEach(post => { %>
+      <div class="card card border-dark m-3" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text">
+            <%= post.note.substring(0,250) + " ..." %>
+            <a href="/<%= post.title %> ">Read More</a>
+          </p>
 
-        <a href="#" class="btn btn-light btn-outline-dark rounded-circle">-</a>
+          <button
+            type="submit"
+            name="deleteItem"
+            value="<%=post._id%>"
+            class="btn btn-light btn-outline-dark rounded-circle"
+          >
+            -
+          </button>
+        </div>
       </div>
-    </div>
 
-    <%}) %>
-  </div>
+      <%}) %>
+    </div>
+  </form>
 </div>
 <%- include('footer'); -%>
