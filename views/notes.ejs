@@ -51,13 +51,13 @@
   <!-- output -->
   <form action="/delete" method="POST">
     <div class="row container-fluid">
-      <% postContent.forEach(post => { %>
+      <% posts.forEach(post => { %>
       <div class="card card border-dark m-3" style="width: 18rem">
         <div class="card-body">
           <h5 class="card-title"><%= post.title %></h5>
           <p class="card-text">
             <%= post.note.substring(0,250) + " ..." %>
-            <a href="/<%= post.title %> ">Read More</a>
+            <a href="/<%= post._id %>">Read More</a>
           </p>
 
           <button

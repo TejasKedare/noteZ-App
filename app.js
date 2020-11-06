@@ -23,9 +23,24 @@ const Note = mongoose.model("Note", notesSchema);
 app.get("/", (req, res) => {
   Note.find({}, (err, post) => {
     if (!err) {
-      res.render("notes", { postContent: post });
+      res.render("notes", { posts: post });
     } else {
       console.log(err);
+    }
+  });
+});
+
+app.get("/:note", (req, res) => {
+  const noteList = req.params.note;
+  Note.findOne({ _id: noteList }, function (err, post) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("page", {
+        title: post.title,
+
+        note: post.note,
+      });
     }
   });
 });
@@ -56,7 +71,7 @@ app.post("/delete", (req, res) => {
 
 // app.get("/:note", (req, res) => {
 //   const notes = _.lowerCase(req.params.note);
-//   postz.forEach((post) => {
+//   notes.forEach((post) => {
 //     const noteTitle = _.lowerCase(post.title);
 //     if (noteTitle === notes) {
 //       res.render("page", {
